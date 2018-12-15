@@ -12,6 +12,7 @@ const locations = {
     postcode: ''
 }
 
+
 axios.get(`https://randomuser.me/api/?results=${number}`)
     .then(res => {
         details.id = res.data.results[0].login.uuid;
@@ -33,8 +34,10 @@ axios.get(`https://randomuser.me/api/?results=${number}`)
 // Type Definations
 const typeDefs = `
 type Query{
+    gretting(name: String): String
     me: User!
     address: Location!
+    grades: [Int!]!
 }
 type User {
     id: ID!
@@ -58,6 +61,16 @@ const resolvers = {
                 username: details.username,
                 age: details.age
             }
+        },
+        gretting(parents, args, ctx, info) {
+            if (args.name) {
+                return `Hello ${args.name}`
+            } else {
+                return 'Hello'
+            }
+        },
+        grades(parents,args,ctx,info){
+            return [10,20,30]
         },
         address() {
             return {
