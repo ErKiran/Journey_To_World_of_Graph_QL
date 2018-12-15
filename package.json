@@ -14,8 +14,10 @@
     "deprecationWarningIssues"
   ],
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "graphql": "^14.0.2",
     "graphql-yoga": "^1.16.7"
   }
 }
