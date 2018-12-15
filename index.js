@@ -4,37 +4,51 @@ const number = 1;
 const details = {
     first: '',
     last: '',
-    location: ''
+    city: '',
+    dob: '',
+    age: '',
+    latitude: '',
+    longitude: ''
 }
 
-const result = axios.get(`https://randomuser.me/api/?results=${number}`)
+axios.get(`https://randomuser.me/api/?results=${number}`)
     .then(res => {
         details.first = res.data.results[0].name.first;
         details.last = res.data.results[0].name.last;
         details.city = res.data.results[0].location.city;
-        return `${details.first}, ${details.last}, ${details.city}`;
+        details.latitude = res.data.results[0].location.coordinates.latitude;
+        details.longitude = res.data.results[0].location.coordinates.longitude;
+
+
+        return `
+        ${details.first},
+         ${details.last},
+          ${details.city},
+          ${details.latitude}
+          ,${details.longitude}
+          `;
     });
 
 // Type Definations
 const typeDefs = `
 type Query{
-    hello: String!
     name: String!
     city: String!
+    coordinates: String!
 }
 `
 // Resolvers
 
 const resolvers = {
     Query: {
-        hello() {
-            return 'This is my first query in Graph-QL yoga'
-        },
         name() {
             return `My name is ${details.first} ${details.last}`
         },
         city() {
             return `I live in ${details.city}`
+        },
+        coordinates() {
+            return `Here is my latitude ${details.latitude} and longitude ${details.longitude}`
         }
     }
 }
