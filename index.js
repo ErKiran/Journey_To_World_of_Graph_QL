@@ -1,4 +1,4 @@
-import { GraphQLServer } from 'graphql-yoga';
+/*import { GraphQLServer } from 'graphql-yoga';
 import axios from 'axios';
 const number = 1;
 const details = {
@@ -60,4 +60,4 @@ const server = new GraphQLServer({
 
 server.start(() => {
     console.log('Hurray! Server is up and running')
-});
+});*/
